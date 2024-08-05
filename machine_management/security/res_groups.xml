@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record model="ir.module.category" id="machine_module_management">
+        <field name="name">Machine Management user-groups</field>
+        <field name="description">
+            User access levels for Machine Management module</field>
+        <field name="sequence">10</field>
+    </record>
+
+    <record id="machine_tech_person_access" model="res.groups">
+        <field name="name">Tech Person</field>
+        <field name="category_id" ref="machine_module_management"/>
+    </record>
+    <record id="machine_manager_access" model="res.groups">
+        <field name="name">Manager</field>
+        <field name="category_id" ref="machine_module_management"/>
+        <field name="implied_ids" eval="[(4, ref('machine_tech_person_access'))]"/>
+    </record>
+
+</odoo>

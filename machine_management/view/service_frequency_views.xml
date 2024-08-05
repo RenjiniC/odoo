@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="service_frequency_form" model="ir.ui.view">
+            <field name="name">service.frequency.form</field>
+            <field name="model">service.frequency</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <h1>
+                            <field name="name" string="Name"/>
+                        </h1>
+                        <group>
+                            <label for="number"
+                                   string="Schedule Service Every"/>
+                                <div>
+                                    <field name="number" class="oe_inline"/>
+                                    <field name="frequency" class="oe_inline"/>
+                                </div>
+                            <field name="days" class="oe_inline"/>
+                            <field name="total_days" class="oe_inline"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+    </record>
+    <record id="service_frequency_action" model="ir.actions.act_window">
+            <field name="name">Service Frequency</field>
+            <field name="res_model">service.frequency</field>
+            <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="service_frequency_menu"
+              name="Service Frequency"
+              action="service_frequency_action"
+              parent="machine_menu_root"/>
+</odoo>

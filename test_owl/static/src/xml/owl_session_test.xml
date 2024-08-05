@@ -1,0 +1,6 @@
+<templates xml:space="preserve">
+   <t t-name="test_owl.Test">
+      <p>Hello World <t t-esc="props.a"/></p>
+
+   </t>
+</templates>

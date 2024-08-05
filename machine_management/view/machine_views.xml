@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record id="machine_action" model="ir.actions.act_window">
+            <field name="name">Machine</field>
+            <field name="res_model">machine.management</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record id="machine_form" model="ir.ui.view">
+            <field name="name">machine.form</field>
+            <field name="model">machine.management</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                         <button name="redirect_new" string="New"
+                                    type="object" class="oe_highlight"/>
+                         <button name="redirect_service_new" string="New Case"
+                                    type="object" class="btn-secondary"/>
+                         <field name="active" invisible="1"/>
+                         <field name="state" widget="statusbar"
+                                options="{'clickable': '1'}"
+                                statusbar_visible="in_service,active"/>
+                    </header>
+                    <sheet>
+                        <div name="button_box">
+                            <button class="oe_stat_button"
+                                    type="object"
+                                    name="transfer_history"
+                                    string="Transfer History"
+                                    icon="fa-file">
+                                <field string="Machine transfer"
+                                       name="machine_transfer_count"
+                                       widget="statinfo"/>
+                            </button>
+                            <button class="oe_stat_button"
+                                    type="object"
+                                    name="case_history"
+                                    string="Case History"
+                                    icon="fa-file">
+                                <field string="Machine Cases"
+                                       name="machine_case_count"
+                                       widget="statinfo"/>
+                            </button>
+
+                        </div>
+                        <h1>
+                            <field name="reference_no" string="Reference No"/>
+                        </h1>
+                        <field name="image" widget="image" class="oe_avatar"
+                               options="{'preview_image': 'image'}"/>
+                        <div class="oe_title">
+                            <label for="machine_name" string="Machine Name"/>
+                            <h1>
+                                <div class="d-flex">
+                                    <field name="machine_name" class="me-3"/>
+                                </div>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="machine_type_id"/>
+                                <field name="machine_serial_no"/>
+                                <field name="date_of_purchase"/>
+                                <label for="purchase_value"/>
+                                <field name="currency_id" invisible="1"/>
+                                <div name="price" class="o_row">
+                                    <field name="purchase_value"
+                                       widget='monetary'
+                                       options="{'currency_field':'currency_id',
+                                        'field_digits': True}"/>
+                                </div>
+                            </group>
+                            <group>
+                                <field name="customer_id"/>
+                                <field name="company_id"/>
+                                <field name="warranty"/>
+                                <field name="machine_tag_ids"
+                                       widget="many2many_tags"/>
+                                <field name="machine_age"/>
+                                <field name="service_frequency_id"/>
+                            </group>
+                            <notebook>
+                                <page string="Machine Parts"
+                                      name="product_order_lines_ids">
+                                    <field
+                                        name="product_order_line_ids"
+                                        widget="section_and_note_one2many"
+                                        mode="tree,kanban">
+                                        <form>
+                                           <group>
+                                               <field name="product_id"
+                                                     widget="many2one_barcode"/>
+
+                                               <label for="product_uom_qty"/>
+                                               <div class="o_row">
+                                                    <field
+                                                        name="product_uom_qty"/>
+                                                    <field name="product_uom"/>
+                                                    <field
+                                                        name="product_uom"/>
+                                               </div>
+                                           </group>
+                                            </form>
+                                            <tree
+                                                string="Product Lines"
+                                                editable="bottom"
+                                                limit="200">
+                                                <control>
+                                                    <create
+                                                      name="add_product_control"
+                                                      string="Add a product"/>
+                                                </control>
+
+                                                <field
+                                                name="product_id"
+                                                widget="sol_product_many2one"/>
+                                                <field
+                                                    name="product_uom_qty"/>
+                                                <field
+                                                    name="product_uom"
+                                                    force_save="1"
+                                                    string="UoM"/>
+                                            </tree>
+                                        </field>
+                                </page>
+                                <page string="Description">
+                                    <group>
+                                        <field name="description"/>
+                                    </group>
+                                </page>
+                                <page string="Instruction">
+                                    <group>
+                                        <field name="instruction"/>
+                                    </group>
+                                </page>
+                            </notebook>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <record id="machine_tree" model="ir.ui.view">
+            <field name="name">machine.tree</field>
+            <field name="model">machine.management</field>
+            <field name="arch" type="xml">
+                <tree string="Machine">
+                    <field name="reference_no" string="Reference No"/>
+                    <field name="machine_name"/>
+                    <field name="machine_serial_no"/>
+                    <field name="machine_type_id"/>
+                    <field name="date_of_purchase"/>
+                    <field name="currency_id" column_invisible="True"/>
+                    <field name="purchase_value"
+                           options="{'currency_field': 'currency_id'}"/>
+                    <field name="customer_id"/>
+                    <field name="company_id"/>
+                    <field name="image" widget="image"
+                           width="50px" height="50px"/>
+                    <field name="warranty"/>
+                    <field name="service_frequency_id"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+        <record id="machine_view_search" model="ir.ui.view">
+            <field name="name">Machine.view.search</field>
+            <field name="model">machine.management</field>
+            <field name="arch" type="xml">
+                <search string="Search machine">
+                    <field name="customer_id"/>
+                    <field name="date_of_purchase"/>
+                    <field name="machine_name"/>
+                    <field name="state"/>
+                    <field name="warranty"/>
+                    <filter string="Machine with Warranty" name="warranty"
+                            domain="[('warranty', '=', 'yes')]"/>
+                    <group>
+                        <filter string="Date of Purchase"
+                                name="date_of_purchase"
+                                context="{'group_by': 'date_of_purchase'}"/>
+                        <filter string="Machines" name="warranty"
+                                context="{'group_by': 'warranty'}"/>
+                        <filter string="State" name="state"
+                            context="{'group_by': 'state'}"/>
+                        <filter string="Customer" name="customer_id"
+                            context="{'group_by': 'customer_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+    </data>
+</odoo>

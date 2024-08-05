@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+        <menuitem id="machine_menu_root" name="Machine"/>
+        <menuitem id="machine_menu" name="Machine"
+                  parent="machine_menu_root"
+                  action="machine_action"/>
+</odoo>

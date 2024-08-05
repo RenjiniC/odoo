@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="machine_transfer_action" model="ir.actions.act_window">
+            <field name="name">Machine Transfer</field>
+            <field name="res_model">machine.transfer</field>
+            <field name="view_mode">tree,form</field>
+    </record>
+    <record id="machine_transfer_form" model="ir.ui.view">
+            <field name="name">machine.transfer.form</field>
+            <field name="model">machine.transfer</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                            <button name="transfer_action" string="Transfer"
+                                    type="object" class="oe_highlight"/>
+                            <field name="active" string="Archive"
+                                   invisible="1"/>
+                    </header>
+                    <sheet>
+                        <h1>
+                            <field name="reference_no" string="Reference No"/>
+                        </h1>
+                        <group>
+                            <group>
+                                <group>
+                                    <field name="transfer_type"/>
+                                    <field name="machine_name_id"
+                                           domain="[('id', 'in',
+                                                    alternate_ids)]"/>
+                                    <field name="alternate_ids" invisible="1"/>
+                                    <field name="machine_serial_no"/>
+                                </group>
+                                <group>
+                                    <field name="transfer_date"/>
+                                    <field name="customer_id"
+                                        invisible="transfer_type != 'install'"/>
+                                    <field name="internal_notes"/>
+                                </group>
+                            </group>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <record id="machine_transfer_tree" model="ir.ui.view">
+            <field name="name">machine.transfer.tree</field>
+            <field name="model">machine.transfer</field>
+            <field name="arch" type="xml">
+                <tree string="Machine Transfer">
+                    <field name="reference_no"/>
+                    <field name="machine_name_id"/>
+                    <field name="machine_serial_no"/>
+                    <field name="transfer_date"/>
+                    <field name="transfer_type"/>
+                    <field name="customer_id"/>
+                    <field name="internal_notes"/>
+                </tree>
+            </field>
+        </record>
+    <menuitem id="machine_transfer_menu"
+              name="Machine Transfer"
+              groups="machine_manager_access"
+              action="machine_transfer_action"
+              parent="machine_menu_root"/>
+</odoo>

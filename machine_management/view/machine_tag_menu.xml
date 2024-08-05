@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="machine_tag_action" model="ir.actions.act_window">
+            <field name="name">Machine Tag</field>
+            <field name="res_model">machine.tag</field>
+            <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="machine_tag_menu"
+              name="Machine Tag"
+              groups="machine_manager_access"
+              action="machine_tag_action"
+              parent="machine_menu_root"/>
+</odoo>

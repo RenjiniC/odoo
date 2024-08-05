@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="machine_service_tree" model="ir.ui.view">
+            <field name="name">machine.service.tree</field>
+            <field name="model">machine.service</field>
+            <field name="arch" type="xml">
+                <tree string="Machine Service">
+                    <field name="machine_name_id"/>
+                    <field name="customer_id"/>
+                    <field name="company_id"/>
+                    <field name="parts_consumed"/>
+                    <field name="date"/>
+                    <field name="tech_person_ids" widget="many2many_tags"/>
+                    <field name="state"/>
+                    <field name="service_frequency_id"/>
+                </tree>
+            </field>
+    </record>
+    <record id="machine_service_form" model="ir.ui.view">
+            <field name="name">machine.service.form</field>
+            <field name="model">machine.service</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                         <button name="start_case_action" string="Start"
+                                 type="object" class="btn-primary"/>
+                         <button name="close_case_action" string="Close"
+                                 domain="[('user_id', '=', self.tech_person.id)]"
+                                 type="object" class="btn-secondary"/>
+                         <button name="create_invoice_action"
+                                 string="Create Invoice"
+                                 type="object"
+                                 class="btn-secondary"
+                                 invisible="state == 'open'"/>
+                         <field name="active" invisible="1"/>
+                         <field name="state" widget="statusbar"
+                                options="{'clickable': '1'}"
+                                statusbar_visible="open, started, done, cancel"/>
+                    </header>
+
+                    <sheet>
+                        <h1>
+                            <field name="reference_no" string="Reference No"/>
+                        </h1>
+                        <group>
+                            <group>
+                                <group>
+                                    <field name="machine_name_id"/>
+                                    <field name="customer_id"/>
+                                    <field name="company_id"/>
+                                    <field name="service_frequency_id"/>
+                                    <field name="last_service_date"/>
+                                </group>
+                                <group>
+                                    <field name="date"/>
+                                    <field name="tech_person_ids"
+                                           widget="many2many_tags"/>
+                                    <field name="description"/>
+                                    <field name="internal_notes"/>
+                                </group>
+                            </group>
+                            <notebook>
+                                <page string="Machine Parts"
+                                      name="parts_consumed">
+                                    <field
+                                        name="parts_consumed"
+                                        widget="section_and_note_one2many"
+                                        mode="tree,kanban">
+                                        <form>
+                                           <group>
+                                               <field name="product_id"
+                                                    widget="many2one_barcode"/>
+
+                                               <label for="product_uom_qty"/>
+                                               <div class="o_row">
+                                                    <field
+                                                        name="product_uom_qty"/>
+                                                    <field name="product_uom"/>
+                                                    <field
+                                                        name="product_uom"/>
+                                               </div>
+                                           </group>
+                                            </form>
+                                            <tree
+                                                string="Product Lines"
+                                                editable="bottom"
+                                                limit="200">
+                                                <control>
+                                                    <create
+                                                      name="add_product_control"
+                                                      string="Add a product"/>
+                                                </control>
+
+                                                <field
+                                                 name="product_id"
+                                                 widget="sol_product_many2one"/>
+                                                <field
+                                                    name="product_uom_qty"/>
+                                                <field
+                                                    name="product_uom"
+                                                    force_save="1"
+                                                    string="UoM"/>
+                                            </tree>
+                                        </field>
+                                </page>
+                            </notebook>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+    <record id="machine_service_action" model="ir.actions.act_window">
+            <field name="name">Machine Service</field>
+            <field name="res_model">machine.service</field>
+            <field name="view_mode">tree,form</field>
+    </record>
+    <menuitem id="machine_service_menu"
+              name="Machine Service"
+              action="machine_service_action"
+              parent="machine_menu_root"/>
+</odoo>

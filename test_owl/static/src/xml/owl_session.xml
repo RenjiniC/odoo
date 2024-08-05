@@ -1,0 +1,8 @@
+<templates xml:space="preserve">
+   <t t-name="test_owl.Counter">
+      <p>Counter: <t t-esc="state.value"/></p>
+      <button class="btn btn-primary" t-on-click="increment">Increment</button>
+      <button class="btn btn-primary" t-on-click="decrement">Decrement</button>
+      <Test a="state.value"/>
+   </t>
+</templates>
