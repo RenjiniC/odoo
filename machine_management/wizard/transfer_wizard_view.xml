@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="transfer_wizard_action" model="ir.actions.act_window">
+            <field name="name">Transfer Wizard</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">transfer.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <record id="transfer_wizard_view_form" model="ir.ui.view">
+        	<field name="name">transfer.wizard.form</field>
+        	<field name="model">transfer.wizard</field>
+        	<field name="arch" type="xml">
+            	<form>
+                	<group class="oe_title">
+                        <field name="from_date"/>
+                        <field name="to_date"/>
+                	</group>
+                    <group>
+                        <field name="customer_id"/>
+                        <field name="transfer_type"/>
+                        <field name="machine_name_id"/>
+                    </group>
+                    <footer>
+                        <button string="Cancel" class="btn-secondary"
+                                special="cancel"/>
+                        <button name='action_pdf' string="Print PDF"
+                                type="object" class="btn-primary"/>
+                        <button name='action_xlsx' string="Print XLSX"
+                                type="object" class="btn-primary"/>
+                    </footer>
+               </form>
+        	</field>
+    	</record>
+    </data>
+</odoo>

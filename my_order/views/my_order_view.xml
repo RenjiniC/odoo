@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+       <record id="my_order_action" model="ir.actions.act_window">
+                <field name="name">My Order</field>
+                <field name="res_model">my.order</field>
+                <field name="view_mode">tree,form</field>
+       </record>
+       <record id="my_order_form" model="ir.ui.view">
+            <field name="name">my.order.form</field>
+            <field name="model">my.order</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                         <button name="transfer_action" string="confirm"
+                                    type="object" class="oe_highlight"/>
+
+                    </header>
+                    <group>
+                        <field name="sale_id"/>
+                        <field name="state"/>
+
+                    </group>
+
+
+                </form>
+            </field>
+       </record>
+       <record id="my_order_tree" model="ir.ui.view">
+            <field name="name">my.order.tree</field>
+            <field name="model">my.order</field>
+            <field name="arch" type="xml">
+                <tree string="My Order">
+
+                    <field name="sale_id"/>
+
+                </tree>
+            </field>
+       </record>
+    </data>
+</odoo>

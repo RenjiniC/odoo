@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="machine_type_action" model="ir.actions.act_window">
+            <field name="name">Machine Type</field>
+            <field name="res_model">machine.type</field>
+            <field name="view_mode">tree</field>
+    </record>
+    <menuitem id="machine_type_menu"
+              name="Machine Type"
+              action="machine_type_action"
+              parent="machine_menu_root"/>
+</odoo>

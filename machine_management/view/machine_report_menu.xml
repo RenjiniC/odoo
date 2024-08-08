@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <menuitem id="machine_report"
+              name="Reporting"
+              groups="machine_manager_access"
+              parent="machine_menu_root"/>
+        <menuitem id="machine_transfer_report"
+                    name="Machine Transfer"
+                  parent="machine_report"
+                  groups="machine_manager_access"
+                  action="transfer_wizard_action"/>
+</odoo>

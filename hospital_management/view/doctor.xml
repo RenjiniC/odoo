@@ -1,0 +1,17 @@
+<odoo>
+    <record id="hospital_doctor_action" model="ir.actions.act_window">
+    		<field name="name">Doctor</field>
+    		<field name="res_model">hr.employee</field>
+    		<field name="view_mode">tree,form</field>
+    </record>
+    <record id="doctor_customizations_form" model="ir.ui.view">
+        	<field name="name">hr.employee.form.inherit</field>
+        	<field name="model">hr.employee</field>
+        	<field name="inherit_id" ref="hr.view_employee_form"/>
+        	<field name="arch" type="xml">
+            	<field name="department_id" position="after">
+                	<field name="specialization" widget="many2many_tags"/>
+            	</field>
+        	</field>
+	</record>
+</odoo>

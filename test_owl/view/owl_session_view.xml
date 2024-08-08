@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="test_owl_action" model="ir.actions.client">
+          <field name="name">Test Owl</field>
+          <field name="tag">test_owl.Counter</field>
+      </record>
+    <menuitem id="test_owl_menu_root" name="Test Owl" action="test_owl_action"/>
+
+</odoo>

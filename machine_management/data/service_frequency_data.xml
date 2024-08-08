@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="service_frequency_1" model="service.frequency">
+            <field name="name">Monthly</field>
+            <field name="number">1</field>
+            <field name="frequency">month</field>
+        </record>
+        <record id="service_frequency_2" model="service.frequency">
+            <field name="name">Weekly</field>
+            <field name="number">1</field>
+            <field name="frequency">week</field>
+        </record>
+        <record id="service_frequency_3" model="service.frequency">
+            <field name="name">Yearly</field>
+            <field name="number">1</field>
+            <field name="frequency">year</field>
+        </record>
+    </data>
+</odoo>

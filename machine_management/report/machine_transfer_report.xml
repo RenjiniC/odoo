@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+   <template id="report_machine_transfer">
+       <t t-call="web.html_container">
+           <t t-call="web.external_layout">
+               <div class="page">
+                   <div class="oe_structure"/>
+                   <h2>Machine Transfer Report</h2>
+                   <br/>
+                   <div class="row">
+                        <div class="col-12">
+                            <table class="table table-bordered mt32" border="1">
+                                <thead style="display: table-row-group">
+                                    <tr>
+                                        <th class="text-center"
+                                            style="width: 20%"
+                                            scope="col">Machine Name</th>
+                                        <th class="text-center"
+                                            style="width: 10%"
+                                            scope="col">Reference no</th>
+                                        <th class="text-center"
+                                            style="width: 20%"
+                                            scope="col">Transfer Type</th>
+                                        <th class="text-center"
+                                            style="width: 20%"
+                                            scope="col">Date</th>
+                                        <th class="text-center"
+                                            style="width: 20%"
+                                            scope="col">Customer</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-foreach="docs" t-as="o" >
+                                        <tr class="text-center">
+                                            <td>
+                                                <span
+                                                t-field="o.machine_name_id.machine_name"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="o.reference_no"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="o.transfer_type"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="o.transfer_date"/>
+                                             </td>
+                                            <td>
+                                                <span t-field="o.customer_id.name"/>
+                                             </td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+                        </div>
+                   </div>
+               </div>
+           </t>
+       </t>
+   </template>
+</odoo>
