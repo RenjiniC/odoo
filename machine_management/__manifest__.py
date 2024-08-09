@@ -35,7 +35,7 @@
     ],
     'assets': {
             'web.assets_backend': [
-                'machine_management/static/src/js/action_manager.js',
+                '/machine_management/static/src/js/action_manager.js',
             ],
         },
 }
