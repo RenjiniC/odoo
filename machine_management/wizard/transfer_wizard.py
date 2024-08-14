@@ -9,31 +9,33 @@ from odoo.tools import date_utils
 class TransferWizard(models.TransientModel):
     _name = 'transfer.wizard'
 
-    from_date = fields.Date(string='From Date', required=True)
-    to_date = fields.Date(string='To Date', required=True)
-    customer_id = fields.Many2one('res.partner', 'Customer',
-                                  required=True)
-
+    from_date = fields.Date(string='From Date')
+    to_date = fields.Date(string='To Date')
+    customer_id = fields.Many2one('res.partner', 'Customer')
     transfer_type = fields.Selection([('install', 'Install'),
                                       ('remove', 'Remove')],
-                                     'Transfer Type',
-                                     required=True)
-
+                                     'Transfer Type')
     machine_name_id = fields.Many2one('machine.management',
-                                      'Machine',
-                                      required=True)
+                                      'Machine')
 
     def get_data(self):
-        query = """select * from machine_transfer where transfer_date between %s and %s
-                        AND transfer_type = %s
-                        AND customer_id = %s
-                        AND machine_name_id = %s
-                        """
-        record = [self.from_date,
-                  self.to_date,
-                  self.transfer_type,
-                  self.customer_id.id,
-                  self.machine_name_id.id]
+        query = """select * from machine_transfer"""
+        record = []
+        if self.from_date:
+            query += " where transfer_date >= %s"
+            record.append(self.from_date)
+        if self.to_date:
+            query += " AND transfer_date <= %s"
+            record.append(self.to_date)
+        if self.transfer_type:
+            query += " AND transfer_type = %s"
+            record.append(self.transfer_type)
+        if self.customer_id.id:
+            query += " AND customer_id = %s"
+            record.append(self.customer_id.id)
+        if self.machine_name_id.id:
+            query += " AND machine_name_id = %s"
+            record.append(self.machine_name_id.id)
         self.env.cr.execute(query, tuple(record))
         report = self.env.cr.dictfetchall()
         return report
@@ -67,20 +69,20 @@ class TransferWizard(models.TransientModel):
         sheet = workbook.add_worksheet()
         cell_format = workbook.add_format(
             {'font_size': '12px','bold': True,
-             'align': 'center', 'color': 'red'})
+             'align': 'center', 'color': 'red', 'border': 2})
         head = workbook.add_format(
             {'align': 'center', 'bold': True,
-             'font_size': '20px', 'color': 'blue'})
+             'font_size': '20px', 'color': 'blue', 'border': 2})
         content_format = workbook.add_format(
-            {'font_size': '12px', 'align': 'center'})
+            {'font_size': '12px', 'align': 'center', 'border': 2})
         txt = workbook.add_format({'font_size': '10px', 'align': 'center'})
-        sheet.merge_range('A3:K4', 'MACHINE TRANSFER REPORT', head)
-        sheet.merge_range('A6:B6', 'Machine Name', cell_format)
-        sheet.merge_range('C6:D6', 'Reference no', cell_format)
-        sheet.merge_range('E6:F6', 'Transfer Type', cell_format)
-        sheet.merge_range('G6:H6', 'Date', cell_format)
-        sheet.merge_range('I6:J6', 'Customer', cell_format)
-        for i, rec in enumerate(data, start=8):
+        sheet.merge_range('A3:J4', 'MACHINE TRANSFER REPORT', head)
+        sheet.merge_range('A5:B6', 'Machine Name', cell_format)
+        sheet.merge_range('C5:D6', 'Reference no', cell_format)
+        sheet.merge_range('E5:F6', 'Transfer Type', cell_format)
+        sheet.merge_range('G5:H6', 'Date', cell_format)
+        sheet.merge_range('I5:J6', 'Customer', cell_format)
+        for i, rec in enumerate(data, start=7):
             sheet.merge_range(f'A{i}:B{i}', rec['machine_name_id'][1],
                               content_format)
             sheet.merge_range(f'C{i}:D{i}', rec['reference_no'],

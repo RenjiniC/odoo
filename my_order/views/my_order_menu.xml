@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<odoo>
-    <data>
-        <menuitem id="my_order_menu_root" name="My Order"/>
-        <menuitem id="my_order_menu" name="My Order"
-                  parent="my_order_menu_root"
-                  action="my_order_action"/>
-    </data>
-</odoo>
