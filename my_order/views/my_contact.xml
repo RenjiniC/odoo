@@ -1,0 +1,16 @@
+<odoo>
+    <record id="contact_form" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+           	<field name="company_name" position="after">
+                <div>
+                    <field name="is_only_ordered" string="Is_Only_Ordered"/>
+                </div>
+
+            </field>
+        </field>
+    </record>
+
+</odoo>

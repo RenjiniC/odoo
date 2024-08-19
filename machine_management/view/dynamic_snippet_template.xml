@@ -1,20 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <template id="machine_list" name="Dynamic Snippet">
+    <template id="machine_list" name="Machine Snippet">
         <section class="container dynamic_snippet">
-            <h3 class="text-center">Machine List</h3>
+            <h3 class="text-center">Machines</h3>
             <div class="row">
                 <t t-foreach="data" t-as="machine">
                     <div class="p-3 col-md-3">
-                        <div class="card" style="width: 18rem;">
-                            <div class="card-body">
-                                <h5 class="card-title text-center"
+                        <div class="card" style="width: 18rem;height:400px; border:none;background:#faf9f7;">
+                            <div class="overflow-hidden rounded">
+                                <img t-att-src="image_data_uri(machine['image'])"
+                                     style="height:200px;width:18rem;
+                                            padding-left: 5px;
+                                            padding-right: 5px;
+                                            padding-top: 5px;"
+                                     alt="Loading..."/>
+                            </div>
+                            <div>
+                                <h6 class="card-title text-left fw-bold" style="padding-left: 10px; padding-top: 10px;"
                                     t-esc="machine['machine']"/>
                             </div>
-<!--                            <ul class="list-group list-group-flush">-->
-<!--                                <li class="list-group-item text-center"-->
-<!--                                    t-esc="machine['price']"/>-->
-<!--                            </ul>-->
+                            <div>
+                                <h6 class="card-title text-left" style="padding-left: 10px;"
+                                    t-esc="machine['machine_type']"/>
+                            </div>
+                            <div>
+                                <div class="mt-2" style="padding-left: 10px; padding-bottom:10px;">
+                                    <span class="fw-bold">
+                                        <t t-out="machine['currency_id'].symbol"/>
+                                        <span class="oe-currency_value">
+                                            <t t-esc="machine['purchase_value']"/>
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="container" style="padding-left: 20px;padding-right: 20px;">
+                                    <div class="row justify-content-between" style="padding-left: 10px;padding-right: 10px;padding-top:10px;">
+                                        <t t-foreach="machine['machine_tags']" t-as="tag">
+                                            <div class="col-md-6" style="
+                                                          width: 120px;
+                                                          padding-left: 10px;
+                                                          padding-right: 10px;
+                                                          background-color: lightblue;
+                                                          margin-bottom: 10px;
+                                                          border-radius: 18rem;"
+                                                t-esc="tag.name"/>
+                                        </t>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </t>

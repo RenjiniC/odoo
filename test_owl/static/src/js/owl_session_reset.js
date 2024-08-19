@@ -2,12 +2,13 @@
 
 import { patch } from "@web/core/utils/patch";
 import { Component, useState } from "@odoo/owl";
-import { Test } from "./owl_session_test"
+import { Counter } from "./owl_session"
 
-patch(Test.prototype, {
+patch(Counter.prototype, {
+    setup(){
+        super.setup(...arguments);
+    },
     reset(){
-    console.log('Hello')
-    this.state.value : 0
-
+    this.state.value = 0
         }
-    }
+    })

@@ -1,9 +1,8 @@
-<templates xml:space="preserve">
-   <t t-name="test_owl.Reset">
-        <t t-inherit="test_owl.Counter" t-inherit-mode="extension">
-        <xpath expr="//button[@t-on-click='decrement')]">
-            <button class="btn btn-secondary btn-sm" t-on-click="reset">View profile</button>
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates id="template" xml:space="preserve">
+   <t t-name="test_owl.Reset" t-inherit="test_owl.Counter" t-inherit-mode="extension" owl="1">
+        <xpath expr="//button[hasclass('decrement')]" position="after">
+            <button class="btn btn-secondary btn-sm reset" t-on-click="reset">Reset</button>
         </xpath>
     </t>
-   </t>
 </templates>

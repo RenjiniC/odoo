@@ -4,6 +4,12 @@
           <field name="name">Test Owl</field>
           <field name="tag">test_owl.Counter</field>
       </record>
+    <record id="test_owl_extend_action" model="ir.actions.client">
+          <field name="name">Test Extend</field>
+          <field name="tag">test_owl.extend_counter</field>
+    </record>
+
     <menuitem id="test_owl_menu_root" name="Test Owl" action="test_owl_action"/>
+    <menuitem id="test_owl_menu_extend" name="Test Owl Extend" action="test_owl_extend_action" parent="test_owl_menu_root"/>
 
 </odoo>

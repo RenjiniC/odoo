@@ -1,0 +1,7 @@
+<templates xml:space="preserve">
+   <t t-name="owl_session_extend.xml" t-inherit="test_owl.Counter" t-inherit-mode="primary" owl="1">
+      <xpath expr="//button[hasclass('reset')]" position="after">
+         <button class="btn btn-primary extend" t-on-click="extend">Extend</button>
+      </xpath>
+   </t>
+</templates>

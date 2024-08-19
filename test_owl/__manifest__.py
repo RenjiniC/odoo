@@ -8,18 +8,20 @@
     'category': '',
     'author': 'Renjini',
     'sequence': 12,
-    'data': {
+    'data': [
             'view/owl_session_view.xml',
 
-    },
-    # 'assets': {
-    #         'web.assets_backend': [
-    #             'test_owl/static/src/js/owl_session.js',
-    #             'test_owl/static/src/xml/owl_session.xml',
-    #             'test_owl/static/src/js/owl_session_test.js',
-    #             'test_owl/static/src/xml/owl_session_test.xml',
-    #             'test_owl/static/src/js/owl_session_reset.js',
-    #             'test_owl/static/src/xml/owl_session_reset.xml',
-    #         ],
-    #     },
+    ],
+    'assets': {
+            'web.assets_backend': [
+                # 'test_owl/static/src/js/owl_session.js',
+                'test_owl/static/src/xml/owl_session.xml',
+                # 'test_owl/static/src/js/owl_session_test.js',
+                'test_owl/static/src/xml/owl_session_test.xml',
+                # 'test_owl/static/src/js/owl_session_reset.js',
+                'test_owl/static/src/xml/owl_session_reset.xml',
+                # 'test_owl/static/src/js/owl_session_extend.js',
+                'test_owl/static/src/xml/owl_session_extend.xml',
+            ],
+        },
 }

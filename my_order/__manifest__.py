@@ -10,10 +10,11 @@
     'sequence': 10,
 
     'data': [
-                 'security/ir.model.access.csv',
-                 'views/my_order_menu.xml',
-                 'views/my_order_view.xml',
-                 'views/my_delivery_view.xml',
+
+
+                 # 'views/my_delivery_view.xml',
+                 # 'views/my_contact.xml',
+
 
         ],
 }

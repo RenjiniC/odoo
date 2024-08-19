@@ -1,2 +1,2 @@
-from . import my_order
-from . import my_delivery
+from . import my_contact
+from . import my_sale_order
