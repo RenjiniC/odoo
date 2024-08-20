@@ -32,7 +32,8 @@
              'view/service_frequency_views.xml',
              'view/machine_report_menu.xml',
              'view/dynamic_snippet.xml',
-             'view/dynamic_snippet_template.xml',
+             # 'view/dynamic_snippet_template.xml',
+
 
     ],
     'assets': {
@@ -42,7 +43,7 @@
             'web.assets_frontend': [
                     'machine_management/static/src/js/dynamic_snippet.js',
                     # 'machine_management/static/src/xml/home_template.xml',
-                    # 'machine_management/static/src/xml/machine_snippet_templates.xml'
+                    'machine_management/static/src/xml/machine_snippet_templates.xml'
 
                 ],
         },

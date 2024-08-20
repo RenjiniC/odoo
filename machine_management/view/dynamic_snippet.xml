@@ -1,8 +1,20 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <odoo>
+    <template id="machine_template" name="Best Seller">
+    <section class="machine_snippet">
+       <div class="ref-arrival-content">
+            <p class="ref-section_head ref-centerhead__underline ref-head--primary"
+               style="color: #0d5272;">Best Seller
+            </p>
+        </div>
+        <div id="new_machine_carousel"/>
+    </section>
+</template>
+
     <template id="basic_snippets" inherit_id="website.snippets" name="Machines Snippet " priority="8">
        <xpath expr="//div[@id='snippet_effect']//t[@t-snippet][last()]" position="after">
-           <t t-snippet="machine_management.machine_list"/>
+<!--           <t t-snippet="machine_management.machine_list"/>-->
+           <t t-snippet="machine_management.new_machine_template"/>
        </xpath>
     </template>
 </odoo>
