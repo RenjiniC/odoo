@@ -10,26 +10,25 @@ export function chunk(array, size) {
     return result;
 }
 var NewMachines = publicWidget.Widget.extend({
-   selector: '.dynamic_snippet',
+   selector: '.machine_snippet',
    willStart: async function () {
-       const data = await jsonrpc('/machines', {}).then((data) => {
-        console.log('abc',data)
-       const [machines] = data
+       const data = await jsonrpc('/machines', {})
+       console.log('abc',data)
+       const machines = data
        console.log('helloooo',machines)
        Object.assign(this,{machines})
-    })
    },
    start : function () {
         const refEl = this.$el.find("#new_machines_carousel")
         const {machines} = this
         const chunkData = chunk(machines, 4)
-        console.log('Happyy.....', chunkData)
+        console.log('xyz.....', chunkData)
         refEl.html(renderToElement('machine_management.new_machine', {
         machines, chunkData
         }))
    }
    });
-publicWidget.registry.DynamicSnippet = NewMachines;
+publicWidget.registry.new_machine_snippet = NewMachines;
 return NewMachines;
 
 

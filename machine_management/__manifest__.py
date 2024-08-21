@@ -43,7 +43,7 @@
             'web.assets_frontend': [
                     'machine_management/static/src/js/dynamic_snippet.js',
                     # 'machine_management/static/src/xml/home_template.xml',
-                    'machine_management/static/src/xml/machine_snippet_templates.xml'
+                    'machine_management/static/src/xml/machine_snippet_templates.xml',
 
                 ],
         },

@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-import time
-
 from odoo import http
 from odoo.http import request
 
@@ -9,7 +7,6 @@ class MachineList(http.Controller):
     @http.route('/machines', type="json", auth="public")
     def new_machine(self):
         machines = request.env['machine.management'].search_read([], ['id', 'machine_name', 'image', 'purchase_value', 'machine_tag_ids', 'machine_type_id', 'currency_id'], order='id desc')
-        print(machines)
         return machines
 
 
